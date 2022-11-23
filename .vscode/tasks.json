@@ -1,0 +1,58 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/dapr-bindings-dotnet.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/dapr-bindings-dotnet.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/dapr-bindings-dotnet.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            //https://docs.dapr.io/developing-applications/ides/vscode/vscode-how-to-debug-multiple-dapr-apps/#daprd-parameter-table
+            "appId": "dapr-bindings-dotnet",
+            "appPort": 5444,
+            "label": "dapr-debug",
+            "type": "dapr",
+            "dependsOn": "build",
+            "componentsPath": "./components",
+            "logLevel": "debug",
+            "httpPort": 3500,
+            "grpcPort": 5005
+        },
+        {
+            "appId": "dapr-bindings-dotnet",
+            "label": "daprd-down",
+            "type": "daprd-down"
+        }
+    ]
+}
