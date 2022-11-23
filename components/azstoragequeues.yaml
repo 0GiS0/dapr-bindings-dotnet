@@ -1,0 +1,16 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: azqueue
+spec:
+  type: bindings.azure.storagequeues
+  version: v1
+  metadata:
+    - name: accountName
+      value: "<ACCOUNT_NAME>"
+    - name: accountKey
+      value: "<ACCOUNT_KEY>"
+    - name: queueName
+      value: "<QUEUE_NAME>"
+    - name: decodeBase64
+      value: "true"
